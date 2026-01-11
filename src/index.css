@@ -1,0 +1,663 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  color: white;
+  overflow-x: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+  scroll-behavior: smooth;
+}
+
+/* ======================================================
+   NAVBAR
+====================================================== */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 72px;
+  width: 100%;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0.35),
+    transparent
+  );
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.navbar-left img {
+  height: 34px;
+}
+
+.navbar-center {
+  display: flex;
+  justify-content: center;
+  gap: 42px;
+}
+
+.navbar-center a {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+.navbar-center a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: #22d3ee;
+  transition: width 0.35s ease;
+}
+
+.navbar-center a:hover {
+  color: #22d3ee;
+}
+
+.navbar-center a:hover::after {
+  width: 100%;
+}
+
+.nav-cta {
+  padding: 12px 26px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid #22d3ee;
+  color: #22d3ee;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow:
+    0 0 18px rgba(34,211,238,0.6),
+    inset 0 0 10px rgba(34,211,238,0.25);
+}
+
+.nav-cta:hover {
+  background: #22d3ee;
+  color: black;
+}
+
+/* ======================================================
+   HERO
+====================================================== */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(0,0,0,0) 30%,
+      rgba(0,0,0,0.35) 60%,
+      rgba(0,0,0,0.7) 85%
+    );
+  z-index: 1;
+}
+
+.hero-content {
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: all 1.2s ease;
+}
+
+.hero-content.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(34,211,238,0.5);
+  background: rgba(34,211,238,0.06);
+  color: #22d3ee;
+  letter-spacing: 3px;
+  font-size: 12px;
+  margin-bottom: 28px;
+}
+
+.hero h1 {
+  font-size: 88px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.hero h2 {
+  font-size: 120px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  margin-top: 12px;
+}
+
+.glow-text {
+  color: #22d3ee;
+  text-shadow:
+    0 0 30px rgba(34,211,238,0.7),
+    0 0 90px rgba(34,211,238,0.6);
+  animation: glowPulse 6s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 25px rgba(34,211,238,0.5),
+      0 0 70px rgba(34,211,238,0.4);
+  }
+  50% {
+    text-shadow:
+      0 0 50px rgba(34,211,238,1),
+      0 0 140px rgba(34,211,238,0.8);
+  }
+}
+
+.hero-desc {
+  max-width: 720px;
+  margin: 32px auto 0;
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.75);
+}
+
+.hero-btn {
+  margin-top: 48px;
+  padding: 18px 56px;
+  background: #22d3ee;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow:
+    0 0 35px rgba(34,211,238,0.8);
+}
+
+/* ======================================================
+   PRODUCTS (CLEAN & FINAL)
+====================================================== */
+
+.products-section {
+  position: relative;
+  overflow: hidden;
+
+  /* 👇 CENTER CONTENT */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ambient glow */
+.products-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    radial-gradient(circle, rgba(34,211,238,0.25) 1px, transparent 2px);
+
+  background-size: 220px 220px;
+  opacity: 0.25;
+
+  animation: dotsFloat 90s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes dotsFloat {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 400px 300px;
+  }
+}
+
+
+.products-title {
+  font-size: 64px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: white;
+  margin-bottom: 120px;
+  position: relative;
+
+  text-align: center;   /* 👈 ADD THIS */
+
+  text-shadow:
+    0 0 20px rgba(34,211,238,0.35),
+    0 0 60px rgba(34,211,238,0.25);
+}
+
+/* faint underline glow */
+.products-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -24px;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #22d3ee,
+    transparent
+  );
+  opacity: 0.6;
+}
+
+
+.products-wrapper {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 140px;
+}
+
+.product-card {
+  border: 1px solid rgba(34,211,238,0.28);
+  border-radius: 24px;
+
+  /* MORE SPACE INSIDE */
+  padding: 96px 88px;
+
+  background: rgba(0, 0, 0, 0.72);
+
+  box-shadow:
+    0 0 80px rgba(34,211,238,0.18),
+    inset 0 0 60px rgba(34,211,238,0.12);
+
+  transition: all 0.6s ease;
+}
+
+.product-card:hover {
+  box-shadow:
+    0 0 90px rgba(34,211,238,0.25),
+    inset 0 0 50px rgba(34,211,238,0.18);
+}
+
+
+.product-content {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 96px; /* 🔥 was too small earlier */
+  align-items: center;
+}
+
+.product-text h3 {
+  font-size: 56px;
+  letter-spacing: 0.15em;
+  margin-bottom: 24px;
+}
+
+.product-text .subtitle {
+  margin-bottom: 22px;
+}
+
+.product-text .desc {
+  margin-bottom: 28px;
+  max-width: 440px;
+  line-height: 1.7;
+}
+
+.metric {
+  margin-top: 12px;
+  margin-bottom: 32px;
+}
+
+.details-btn {
+  margin-top: 32px;
+  background: none;
+  border: none;
+  color: #22d3ee;
+  letter-spacing: 2px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* VISUAL */
+.product-visual {
+  position: relative;
+  width: 100%;
+  height: 360px;
+
+  /* INNER SPACE */
+  padding: 18px;
+
+  border-radius: 22px;
+  overflow: hidden;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(34,211,238,0.08),
+    transparent 70%
+  );
+}
+.product-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px; /* image inside box */
+  opacity: 0.9;
+
+  transition: transform 0.8s ease, opacity 0.6s ease;
+}
+
+
+.visual-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(34,211,238,0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,211,238,0.12) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+}
+/* ===============================
+   GLOBAL ANIMATED GRID
+================================ */
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background-image:
+    linear-gradient(to right, rgba(34,211,238,0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(34,211,238,0.12) 1px, transparent 1px);
+
+  background-size: 80px 80px;
+  animation: gridDrift 90s linear infinite;
+  opacity: 0.25;
+}
+
+@keyframes gridDrift {
+  to {
+    background-position: 400px 400px;
+  }
+}
+/* ===============================
+   FLOATING DOTS
+================================ */
+
+.bg-dots {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+
+  background-image:
+    radial-gradient(circle, rgba(34,211,238,0.9) 1.2px, transparent 2px),
+    radial-gradient(circle, rgba(34,211,238,0.6) 1.2px, transparent 2px),
+    radial-gradient(circle, rgba(34,211,238,0.4) 1.2px, transparent 2px);
+
+  background-size:
+    160px 160px,
+    240px 240px,
+    320px 320px;
+
+  animation: dotsFloat 120s linear infinite;
+  opacity: 0.35;
+}
+
+@keyframes dotsFloat {
+  from {
+    background-position:
+      0 0,
+      120px 240px,
+      300px 100px;
+  }
+  to {
+    background-position:
+      600px 400px,
+      480px 120px,
+      120px 360px;
+  }
+}
+/* ================= VISION SECTION (RESTORED) ================= */
+
+.vision-section {
+  position: relative;
+  min-height: 90vh;
+  padding: 160px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* CONTENT */
+.vision-content {
+  max-width: 900px;
+  z-index: 3;
+}
+
+.vision-content h2 {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.vision-content h2 span {
+  color: #22d3ee;
+  text-shadow:
+    0 0 25px rgba(34,211,238,0.8),
+    0 0 60px rgba(34,211,238,0.6);
+}
+
+.vision-content p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.75);
+}
+
+/* GLOW */
+.vision-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(34,211,238,0.18),
+    transparent 65%
+  );
+  filter: blur(120px);
+  animation: glowBreath 8s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* GRID */
+.vision-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(34,211,238,0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(34,211,238,0.08) 1px, transparent 1px);
+  background-size: 90px 90px;
+  animation: visionGridMove 80s linear infinite;
+  opacity: 0.25;
+  z-index: 0;
+}
+
+/* DOTS */
+.vision-dots {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(34,211,238,0.8) 1px, transparent 2px);
+  background-size: 200px 200px;
+  animation: dotsFloat 90s linear infinite;
+  opacity: 0.35;
+  z-index: 2;
+}
+
+/* ANIMATIONS */
+@keyframes glowBreath {
+  0%,100% { opacity: 0.25; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes visionGridMove {
+  to { background-position: 320px 320px; }
+}
+
+@keyframes dotsFloat {
+  to { background-position: 600px 400px; }
+}
+/* ===============================
+   PRODUCTS BACKGROUND AMBIENCE
+================================ */
+
+.products-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* soft moving glow */
+.products-section::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  z-index: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 30% 40%,
+      rgba(34,211,238,0.12),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 70% 60%,
+      rgba(34,211,238,0.08),
+      transparent 60%
+    );
+
+  animation: ambientMove 26s ease-in-out infinite alternate;
+}
+
+@keyframes ambientMove {
+  from {
+    transform: translateX(0) translateY(0);
+  }
+  to {
+    transform: translateX(80px) translateY(-60px);
+  }
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+}
+.hero {
+  perspective: 1000px;
+}
+
+.hero-content {
+  will-change: transform;
+}
+#products {
+  scroll-margin-top: 100px;
+}
+.hero-btn {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 40px rgba(34,211,238,0.9),
+    0 0 100px rgba(34,211,238,0.6);
+}
+/* ===== PAGE ENTER OVERLAY ===== */
+.page-enter {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 9999;
+  pointer-events: none;
+  animation: pageReveal 1.8s ease forwards;
+}
+
+@keyframes pageReveal {
+  0% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+/* ===== HERO ENTER ANIMATION ===== */
+
+.hero-content.enter {
+  animation: heroEnter 1.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes heroEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.grid-layer,
+.hero-dots {
+  animation-delay: 0.4s;
+  animation-fill-mode: both;
+}
