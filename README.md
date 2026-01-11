@@ -1,16 +1,45 @@
-# React + Vite
+# 8D Autonomy UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A cinematic, narrative-driven React.js interface designed to showcase
+the autonomous intelligence stack of 8-D.AI.
 
-Currently, two official plugins are available:
+This project focuses on immersive storytelling, smooth transitions,
+and a premium futuristic aesthetic rather than a traditional product grid.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Live Demo
+https://8d-autonomy-ui.vercel.app
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧠 Design Philosophy
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The interface is designed as a **scroll-based narrative**:
+- Users are guided through vision, autonomy, and intelligence layers
+- Smooth fades, parallax grids, and glow effects create depth
+- Minimal UI elements keep focus on core technology
+
+The goal was to make complex autonomous systems feel **approachable,
+high-end, and future-forward**.
+
+---
+
+## 🛠️ Technical Stack
+
+### Frontend
+- **React.js** (Vite)
+- **CSS + Tailwind CSS**
+- **Vanilla CSS animations**
+- **Scroll-based interactions (no heavy libraries)**
+
+### Key Techniques
+- Cinematic page enter animations
+- Scroll-driven opacity & parallax effects
+- Component-based architecture
+- Performance-first approach (GPU-friendly animations)
+
+---
+
+## 📂 Project Structure
+
